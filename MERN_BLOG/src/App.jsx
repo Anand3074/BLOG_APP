@@ -1,8 +1,13 @@
-function App() {
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-  return (
-    <div className="flex justify-center text-red-800 text-2xl font-bold h-screen bg-yellow-500 items-center">Hello World</div>
-  )
+function Home() {
+  return <h1>Home</h1>; // Define Home component
 }
 
-export default App
+function App() {
+  return (
+   <div>Hello World</div>
+  );
+}
+
+export default App;

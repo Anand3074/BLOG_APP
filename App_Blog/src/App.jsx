@@ -7,6 +7,8 @@ import SignUp from './pages/SignUp.jsx'
 import SignIn from './pages/SignIn.jsx'
 import Header from './components/Header.jsx'
 import FooterCom from './components/Footer.jsx'
+import Projects from './pages/Projects.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
 
 const App = () => {
   return (
@@ -15,9 +17,12 @@ const App = () => {
         <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/About' element={<About/>}/>
-        <Route path='/Projects' element={<Dashboard/>}/>
+        <Route path='/Projects' element={<Projects/>}/>
         <Route path='/sign-up' element={<SignUp/>}/>
         <Route path='/sign-in' element={<SignIn/>}/>
+          <Route element={<PrivateRoute/>}>
+            <Route path='/dashboard' element={<Dashboard/>}/>
+          </Route>
         </Routes>
     <FooterCom/>
    </BrowserRouter>

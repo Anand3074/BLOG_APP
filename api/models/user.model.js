@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required: true,        
     },
+    profilePicture:{
+        type: String,
+        default: "https://www.e-compubooks.com/wp-content/uploads/2019/10/user-image.png"
+    }
 
 
 }

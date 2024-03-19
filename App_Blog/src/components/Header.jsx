@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Avatar, Button , Dropdown, Navbar, TextInput} from 'flowbite-react';
 import { IoSearchOutline } from "react-icons/io5";
@@ -47,7 +46,7 @@ const Header = () => {
                 </Button>
                 {currentUser ? (
                     <Dropdown arrowIcon={false} inline label={<Avatar
-                     alt="user" img={currentUser.profilePicture} rounded/>}>
+                     alt="user" img={currentUser.profilePicture} rounded className='object-cover object-top'/>}>
                         <Dropdown.Header>
                             <span className='block text-sm'>
                                 @{currentUser.username}

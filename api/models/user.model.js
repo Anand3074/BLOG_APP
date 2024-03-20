@@ -20,9 +20,11 @@ const userSchema = new mongoose.Schema({
     profilePicture:{
         type: String,
         default: "https://www.e-compubooks.com/wp-content/uploads/2019/10/user-image.png"
-    }
-
-
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
 }
 ,{
     timestamps:true

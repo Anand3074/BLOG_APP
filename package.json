@@ -19,5 +19,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.0",
     "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "tailwind-scrollbar": "^3.1.0"
   }
 }

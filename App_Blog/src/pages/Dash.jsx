@@ -16,11 +16,12 @@ const Dash = () => {
   },[location.search])
   return (
 <div className="min-h-screen flex flex-col md:flex-row">
-  <div className='mid:w-56'>
+  <div className='md:w-56'>
   <DashSidebar/>
     </div>
-    {tab === 'profile' && <DashProfile/>}
-    {tab === 'posts' && <DashPost/>}
+
+    {tab === 'profile' && (<div className='w-auto flex flex-1'><DashProfile/></div>)}
+    {tab === 'posts' && (<div className='w-auto flex flex-1'><DashPost/></div>)}
   
 </div>  )
 }

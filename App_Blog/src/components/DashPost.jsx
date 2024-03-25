@@ -67,7 +67,7 @@ const DashPost = () => {
   }
 
     return (
-    <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-400 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500  '>
+    <div className='table-auto overflow-x-scroll md:mx-1 md:w-auto flex flex-col flex-1 p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-400 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500  '>
       {currentUser.isAdmin && userPosts.length > 0 ?
       (<>
       <Table hoverable className='shadow-md'>

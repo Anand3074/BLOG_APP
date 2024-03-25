@@ -1,20 +1,45 @@
 import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../Firebase.js'
 import {CircularProgressbar} from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css';
-import { useNavigate } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
+import {useSelector} from 'react-redux'
 
-const CreatePost = () => {
+const UPdatePost = () => {
     const [file, setFile] = useState(null);
     const [imageUploadProgress, setImageUploadProgress] = useState(null);
     const[imageUploadError, setImageUploadError] = useState(null);
     const[formData, setFormData] = useState({});
     const [publishError, setPublishError] = useState(null)
     const navigate = useNavigate();
+    const {postId} = useParams();
+    const {currentUser} = useSelector(state=> state.user)
+    useEffect(()=>{
+        try {
+                const fetchPost = async () => {
+                const res = await fetch(`/api/post/getposts?postId=${postId}`)
+                const data = await res.json();
+                if(!res.ok){
+                    console.log(data.message);
+                    setPublishError(data.message)
+                    return
+                }
+                if(res.ok){
+                    setPublishError(null)
+                    setFormData(data.posts[0]);
+                }
+            }
+            fetchPost();
+        }
+            catch (error) {
+            console.log(error.message)
+        }
+    },
+    [postId])
     const handleUploadImage = () => {
         console.log('hello')
         try {
@@ -52,8 +77,8 @@ const CreatePost = () => {
 const handleSubmit = async(e) =>{
     e.preventDefault();
     try {
-        const res = await fetch('/api/post/create', {
-            method: 'POST',
+        const res = await fetch(`/api/post/updatepost/${formData._id}/${currentUser._id}`, {
+            method: 'PUT',
             headers:{
                 'Content-Type': 'application/json',
             },
@@ -76,11 +101,12 @@ const handleSubmit = async(e) =>{
     
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen"> 
-        <h1 className="text-center text-3xl my-7 font-semibold"> Create Post</h1>
+        <h1 className="text-center text-3xl my-7 font-semibold"> Update Post</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
             <div className='flex flex-col gap-4 sm:flex-row justify-between'>
-                <TextInput onChange={(e)=> setFormData({...formData, title: e.target.value})}type='text' placeholder='Title' required id='title' className='flex-1'/>
-                <Select onChange={(e)=>setFormData({...formData, category: e.target.value})}>
+                <TextInput onChange={(e)=> setFormData({...formData, title: e.target.value})} 
+                type='text' placeholder='Title' required id='title' className='flex-1' value={formData.title} />
+                <Select onChange={(e)=>setFormData({...formData, category: e.target.value})} value={formData.category} >
                     <option value='uncategorised'>Select a category
                     </option>
                     <option value='javascript'>JavaScript</option>
@@ -112,12 +138,12 @@ const handleSubmit = async(e) =>{
         {formData && formData.image && (<div className="w-full h-full flex justify-center">
             <img src={formData.image} alt="upload" className="w-72  h-75 object-cover object-top "/>
             </div> )}
-            <ReactQuill onChange={(value)=>setFormData({...formData, content: value})} theme='snow' placeholder='Write Something...' className="h-72 mb-12" required />
+            <ReactQuill onChange={(value)=>setFormData({...formData, content: value})} value={formData.content} theme='snow' placeholder='Write Something...' className="h-72 mb-12" required />
             <Button className="mb-24" type='submit' gradientDuoTone='purpleToPink'>
-                Publish
+                Update Post
             </Button>
         </form>
     </div>  )
 }
 
-export default CreatePost
+export default UPdatePost

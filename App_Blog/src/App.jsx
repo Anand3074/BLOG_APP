@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Dashboard from './pages/Dash.jsx'
@@ -11,6 +10,7 @@ import Projects from './pages/Projects.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx'
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute.jsx'
 import CreatePost from './pages/CreatePost.jsx'
+import UPdatePost from './pages/UPdatePost.jsx'
 
 const App = () => {
   return (
@@ -27,6 +27,7 @@ const App = () => {
           </Route>
           <Route element={<OnlyAdminPrivateRoute/>}>
             <Route path='/create-post' element={<CreatePost/>}/>
+            <Route path='/update-post/:postId' element={<UPdatePost/>}/>
           </Route>
         </Routes>
     <FooterCom/>

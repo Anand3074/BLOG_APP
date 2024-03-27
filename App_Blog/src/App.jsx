@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute.jsx'
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute.jsx'
 import CreatePost from './pages/CreatePost.jsx'
 import UPdatePost from './pages/UPdatePost.jsx'
+import PostPage from './pages/PostPage.jsx'
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
         <Route path='/Projects' element={<Projects/>}/>
         <Route path='/sign-up' element={<SignUp/>}/>
         <Route path='/sign-in' element={<SignIn/>}/>
+        <Route path='/post/:postSlug' element={<PostPage/>}/>
+        
           <Route element={<PrivateRoute/>}>
             <Route path='/dashboard' element={<Dashboard/>}/>
           </Route>

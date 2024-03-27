@@ -2,6 +2,7 @@ import { Button, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import CallToAction from '../components/CallToAction.jsx';
+import CommentSection from '../components/CommentSection.jsx';
 
 const PostPage = () => {
 const {postSlug} = useParams();
@@ -50,6 +51,7 @@ if(loading) return <div className='flex justify-center items-center min-h-screen
         <div className='p-3 max-w-2xl mx-auto w-full post-content' dangerouslySetInnerHTML={{__html: post && post.content}}>
         </div>
         <div className=""><CallToAction/></div>
+        <div className=""><CommentSection postId={post._id}/></div>        
     </main>
   )
 }

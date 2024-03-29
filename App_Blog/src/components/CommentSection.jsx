@@ -9,7 +9,6 @@ const CommentSection = ({postId}) => {
   const[commentError, setCommentError] = useState('');
   const {currentUser} = useSelector(state => state.user)
   const navigate = useNavigate();
-  console.log(userComments)
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if(comment.length>200){
@@ -64,7 +63,6 @@ const CommentSection = ({postId}) => {
         navigate('/sign-in')
         return;
       }
-      console.log('handleLike')
       const res = await fetch(`/api/comment/likeComment/${commentId}`,
       {
         method:'PUT', 
@@ -80,6 +78,12 @@ const CommentSection = ({postId}) => {
     } catch (error) {
       console.log(error.message)
     }
+  }
+  console
+  const handleEdit = async (comment, editedContent) =>{
+    setUserComments(userComments.map((c) => 
+      c._id === comment._id ? {...c, content: editedContent} : c
+    ))
   }
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
@@ -107,7 +111,6 @@ const CommentSection = ({postId}) => {
               <Button gradientDuoTone='purpleToPink' type='submit'>Submit</Button>
             </div>
           </form>
-
           {commentError && <Alert color='failure' className='mt-5'>
           {commentError}
   </Alert> } 
@@ -122,8 +125,8 @@ const CommentSection = ({postId}) => {
               <p>{userComments.length}</p>
             </div>
           </div>
-          {userComments.map(comment =>
-            <Comment key={comment._id} onLike={handleLike} comment={comment} >
+          {userComments.map((comment) =>
+            <Comment key={comment._id} onLike={handleLike} comment={comment} onEdit={handleEdit} >
             </Comment>
           )}
         </>

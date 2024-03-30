@@ -5,6 +5,7 @@ import DashProfile from '../components/DashProfile.jsx'
 import DashPost from '../components/DashPost.jsx'
 import DashUsers from '../components/DashUsers.jsx'
 import DashComments from '../components/DashComments.jsx'
+import DashWidget from '../components/DashWidget.jsx'
 
 const Dash = () => {
   const location= useLocation();
@@ -26,7 +27,8 @@ const Dash = () => {
     {tab === 'posts' && (<div className='w-auto flex flex-1'><DashPost/></div>)}
     {tab === 'users' && (<div className='w-auto flex flex-1'><DashUsers/></div>)}
     {tab === 'comments' && (<div className='w-auto flex flex-1'><DashComments/></div>)}
-  
+    {tab === 'dash' && (<div className='w-auto flex flex-1'><DashWidget/></div>)}
+    
 </div>  )
 }
 

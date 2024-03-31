@@ -13,6 +13,7 @@ import CreatePost from './pages/CreatePost.jsx'
 import UPdatePost from './pages/UPdatePost.jsx'
 import PostPage from './pages/PostPage.jsx'
 import ScrollToTop from './components/scrollToTop.jsx'
+import Search from './pages/Search.jsx'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/sign-up' element={<SignUp/>}/>
         <Route path='/sign-in' element={<SignIn/>}/>
         <Route path='/post/:postSlug' element={<PostPage/>}/>
+        <Route path='/search' element={<Search/>}/>
         
           <Route element={<PrivateRoute/>}>
             <Route path='/dashboard' element={<Dashboard/>}/>

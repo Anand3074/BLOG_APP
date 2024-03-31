@@ -7,7 +7,7 @@ const CallToAction = () => {
             <div className='max-w-md font-semibold justify-center sm:text-3xl text-center flex '>
                 Want to learn HTML, CSS and JavaScript by building fun and engaging projects?
             </div>
-            <p className='text-center mt-3 text-sm text-gray-300'>Check our 100 js projects website and start building your own projects</p>
+            <p className='text-center mt-3 text-sm text-gray-500'>Check our 100 js projects website and start building your own projects</p>
             <Button gradientDuoTone='purpleToPink'  type='button' className=' mx-3 rounded-tr-none rounded-bl-none mt-3 w-full' ><a href='#'>100 JS Projects Website</a></Button>
         </div>
         <div className='p-7'>
